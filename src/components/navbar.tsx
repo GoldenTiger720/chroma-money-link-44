@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bell, User, Wallet, History } from "lucide-react";
@@ -24,6 +23,10 @@ export function Navbar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const refreshAndGoHome = () => {
+    window.location.href = '/';
+  };
+
   const scrollToSection = (sectionId: string) => {
     // Check if we're on the home page
     if (location.pathname !== '/') {
@@ -43,12 +46,12 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link to="/" className="flex items-center gap-2" onClick={scrollToTop}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={refreshAndGoHome}>
             <div className="relative h-8 w-8 overflow-hidden rounded-full bg-primary">
               <Wallet className="h-5 w-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary-foreground" />
             </div>
             <span className="font-bold text-lg tracking-tight">ChromaPay</span>
-          </Link>
+          </div>
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
