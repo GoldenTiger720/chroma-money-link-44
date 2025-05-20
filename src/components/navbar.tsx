@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bell, User, Wallet, History } from "lucide-react";
@@ -24,7 +25,13 @@ export function Navbar() {
   };
 
   const refreshAndGoHome = () => {
-    window.location.href = '/';
+    if (location.pathname === '/') {
+      // If already on home page, just scroll to top
+      scrollToTop();
+    } else {
+      // Navigate to home page
+      window.location.href = '/';
+    }
   };
 
   const scrollToSection = (sectionId: string) => {
