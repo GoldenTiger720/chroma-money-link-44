@@ -86,12 +86,9 @@ export default {
 						height: '0'
 					}
 				},
-				'line-movement': {
-					'0%': { transform: 'translateX(0) translateY(0)' },
-					'25%': { transform: 'translateX(10px) translateY(-5px)' },
-					'50%': { transform: 'translateX(0) translateY(0)' },
-					'75%': { transform: 'translateX(-10px) translateY(5px)' },
-					'100%': { transform: 'translateX(0) translateY(0)' }
+				'fall': {
+					'0%': { transform: 'translateY(0) rotate(0deg)', opacity: '1' },
+					'100%': { transform: 'translateY(100vh) rotate(360deg)', opacity: '0.3' }
 				},
 				'pulse-slow': {
 					'0%, 100%': { opacity: '0.6' },
@@ -105,7 +102,7 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'line-movement': 'line-movement 15s infinite ease-in-out',
+				'fall': 'fall linear infinite',
 				'pulse-slow': 'pulse-slow 4s infinite ease-in-out',
 				'float': 'float 6s infinite ease-in-out'
 			}

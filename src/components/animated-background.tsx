@@ -5,48 +5,18 @@ export function AnimatedBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 z-0">
-        {/* Generate animated lines */}
-        {Array.from({ length: 8 }).map((_, index) => (
+        {/* Generate animated snowflakes */}
+        {Array.from({ length: 50 }).map((_, index) => (
           <div 
             key={index} 
-            className={`absolute border-t border-dashed ${index % 2 === 0 ? 'border-accent/20' : 'border-primary/20'} 
-            animate-line-movement`}
+            className="absolute rounded-full bg-white/70 dark:bg-white/30 animate-fall"
             style={{
-              top: `${(index + 1) * 10}%`,
-              left: 0,
-              right: 0,
-              animationDelay: `${index * 0.5}s`,
-              height: '1px'
-            }}
-          />
-        ))}
-        
-        {/* Generate animated dots */}
-        {Array.from({ length: 20 }).map((_, index) => (
-          <div 
-            key={`dot-${index}`} 
-            className="absolute rounded-full animate-pulse-slow bg-accent/20"
-            style={{
-              width: Math.random() * 4 + 2 + 'px',
-              height: Math.random() * 4 + 2 + 'px',
-              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 4 + 1}px`,
+              height: `${Math.random() * 4 + 1}px`,
+              top: `-${Math.random() * 10 + 5}px`,
               left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
-        
-        {/* Network connecting lines */}
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div 
-            key={`network-${index}`} 
-            className="absolute w-px h-px animate-float"
-            style={{
-              top: `${20 + Math.random() * 60}%`,
-              left: `${20 + Math.random() * 60}%`,
-              background: `linear-gradient(90deg, transparent, hsl(var(--accent)/30%), transparent)`,
-              width: `${100 + Math.random() * 200}px`,
-              transform: `rotate(${Math.random() * 360}deg)`,
+              opacity: Math.random() * 0.7 + 0.3,
+              animationDuration: `${Math.random() * 10 + 5}s`,
               animationDelay: `${Math.random() * 5}s`
             }}
           />

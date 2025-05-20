@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Bell, User, Wallet, History } from "lucide-react";
 import { ModeToggle } from './mode-toggle';
+import { WalletConnector } from './wallet-connector';
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -47,6 +48,8 @@ export function Navbar() {
         </nav>
         
         <div className="flex items-center gap-2">
+          <WalletConnector />
+          
           {isAuthenticated ? (
             <>
               <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
