@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Bell, User, Wallet, History } from "lucide-react";
 import { ModeToggle } from './mode-toggle';
 import { WalletConnector } from './wallet-connector';
@@ -18,6 +18,22 @@ import { useAuth } from '@/hooks/use-auth';
 
 export function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
+  const location = useLocation();
+  
+  const scrollToSection = (sectionId: string) => {
+    // Check if we're on the home page
+    if (location.pathname !== '/') {
+      // If not, navigate to home with the section hash
+      return `/#${sectionId}`;
+    } else {
+      // If already on home page, just use the hash for smooth scrolling
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      return `#${sectionId}`;
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -41,8 +57,36 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Link to="/features" className="text-sm font-medium hover:text-primary transition-colors">Features</Link>
-              <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">About</Link>
+              <Link 
+                to={scrollToSection('features')} 
+                onClick={(e) => {
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    const featuresElement = document.getElementById('features');
+                    if (featuresElement) {
+                      featuresElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Features
+              </Link>
+              <Link 
+                to={scrollToSection('about')} 
+                onClick={(e) => {
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    const aboutElement = document.getElementById('about');
+                    if (aboutElement) {
+                      aboutElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                About
+              </Link>
             </>
           )}
         </nav>

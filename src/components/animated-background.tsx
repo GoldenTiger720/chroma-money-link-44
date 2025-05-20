@@ -5,7 +5,7 @@ export function AnimatedBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 z-0">
-        {/* Generate animated snowflakes */}
+        {/* Generate animated snowflakes with improved visuals */}
         {Array.from({ length: 50 }).map((_, index) => (
           <div 
             key={index} 
