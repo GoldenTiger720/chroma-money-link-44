@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Bell, User, Wallet, History } from "lucide-react";
 import { ModeToggle } from './mode-toggle';
 import { WalletConnector } from './wallet-connector';
@@ -19,6 +19,7 @@ import { useAuth } from '@/hooks/use-auth';
 export function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -29,8 +30,8 @@ export function Navbar() {
       // If already on home page, just scroll to top
       scrollToTop();
     } else {
-      // Navigate to home page
-      window.location.href = '/';
+      // Navigate to home page using React Router instead of refreshing
+      navigate('/', { replace: true });
     }
   };
 
