@@ -20,6 +20,10 @@ export function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
   const location = useLocation();
   
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const scrollToSection = (sectionId: string) => {
     // Check if we're on the home page
     if (location.pathname !== '/') {
@@ -39,7 +43,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2" onClick={scrollToTop}>
             <div className="relative h-8 w-8 overflow-hidden rounded-full bg-primary">
               <Wallet className="h-5 w-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary-foreground" />
             </div>
@@ -48,7 +52,13 @@ export function Navbar() {
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
+          <Link 
+            to="/" 
+            className="text-sm font-medium hover:text-primary transition-colors" 
+            onClick={scrollToTop}
+          >
+            Home
+          </Link>
           {isAuthenticated ? (
             <>
               <Link to="/wallet" className="text-sm font-medium hover:text-primary transition-colors">Wallet</Link>
